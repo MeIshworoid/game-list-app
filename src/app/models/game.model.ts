@@ -1,5 +1,5 @@
 export interface GameDetails {
-    gameReleaseDate: string;         
+    gameReleaseDate: Date;         
     gameSalesSheet: string;          
     gameName: string;                
     initialReleaseVersion: string;   
@@ -16,5 +16,5 @@ export interface GameDetails {
     action: string;
     signedBy: string;
     departmentDesignation: string;
-    date: string;
+    date: Date;
   }

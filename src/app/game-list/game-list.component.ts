@@ -1,21 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, importProvidersFrom, OnInit } from '@angular/core';
 import { Game, GameDetails, Verification } from '../models/game.model';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
+import { GameService } from '../service/game.service';
+import { provideHttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-game-list',
   imports: [CommonModule,MatCardModule,MatTableModule,MatButtonModule,RouterModule],
   templateUrl: './game-list.component.html',
-  styleUrl: './game-list.component.scss'
+  styleUrl: './game-list.component.scss',
 })
 export class GameListComponent implements OnInit {
   
   gameDetails: GameDetails = {
-    gameReleaseDate: '2023-05-01',
+    gameReleaseDate: new Date(),
     gameSalesSheet: 'Game Sales Sheet',
     gameName: 'Awesome Game',
     initialReleaseVersion: 'v1.0.0',
@@ -23,20 +25,33 @@ export class GameListComponent implements OnInit {
 }
 
  displayedGameColumns: string[] = ['gameName', 'gameTotalSales', 'actions'];
- gameDataSource = new MatTableDataSource<Game>([
-   { id: 1, gameName: 'Awesome Game', gameTotalSales: 1000000 },
-   { id: 2, gameName: 'Super Game', gameTotalSales: 500000 },
-   { id: 3, gameName: 'Mega Game', gameTotalSales: 750000 }
- ]);
+ gameDataSource = new MatTableDataSource<Game>();
 
  displayedVerificationColumns: string[] = ['action', 'signedBy', 'departmentDesignation', 'date'];
- verificationDataSource = new MatTableDataSource<Verification>([
-   { action: 'Verified', signedBy: 'John Doe', departmentDesignation: 'QA/Tester', date: '2023-05-02' },
-   { action: 'Verified', signedBy: 'Jane Smith', departmentDesignation: 'Manager', date: '2023-05-03' }
- ]);
+ verificationDataSource = new MatTableDataSource<Verification>();
+ 
+ constructor(private gameService: GameService) { }
 
   ngOnInit(): void {
-    
+    this.gameService.getGames()
+    .subscribe({
+      next:(games)=>{
+        this.gameDataSource.data = games;
+      },
+      error:(err)=>{
+        console.error('Error loading games:',err);
+      }
+    })
+
+    this.gameService.getVerifications()
+    .subscribe({
+      next:(verifications)=>{
+        this.verificationDataSource.data = verifications;
+      },
+      error:(err)=>{
+        console.error('Error loading verifications:',err);
+      }
+    })
   }
 
   onPrint(): void {
