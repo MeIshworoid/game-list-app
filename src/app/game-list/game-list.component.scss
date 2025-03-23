@@ -1,0 +1,160 @@
+/* Updated CSS */
+.main-container {
+  max-width: 1000px;
+  margin: 20px auto;
+  padding: 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #ffffff;
+  border: 1px solid #b6b6b6;
+  border-radius: 4px;
+}
+
+/* Game Details Card */
+mat-card.game-card {
+  background-color: #e3f2fd !important;
+  border: 1px solid #90caf9 !important;
+  margin-bottom: 1.5rem;
+  box-shadow: none !important;
+}
+
+mat-card-title {
+  color: #1a237e !important;
+  font-size: 1.4rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #90caf9;
+  margin-bottom: 1rem;
+}
+
+.detail-row {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.detail-row:last-child {
+  border-bottom: none;
+}
+
+.label {
+  color: #424242;
+  font-weight: 500;
+}
+
+.value {
+  color: #212121;
+}
+
+/* Tables Styling */
+.table-section {
+  margin: 2rem 0;
+  border: 1px solid #bdbdbd;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.table-section h2 {
+  background-color: #f5f5f5;
+  margin: 0;
+  padding: 1rem;
+  font-size: 1.2rem;
+  color: #1a237e;
+  border-bottom: 1px solid #bdbdbd;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.data-table th {
+  background-color: #f8f9fa;
+  padding: 1rem;
+  color: #37474f;
+  border: 1px solid #bdbdbd;
+  text-align: left;
+}
+
+.data-table td {
+  padding: 1rem;
+  border: 1px solid #e0e0e0;
+  color: #455a64;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: space-between; /* This creates left/right groups */
+  margin-top: 2rem;
+  padding: 1rem 0;
+  border-top: 1px solid #bdbdbd;
+}
+
+/* Remove the left/right buttons classes */
+.print-btn {
+  order: 1; /* Keep print on left */
+}
+
+.right-buttons {
+  order: 2; /* Group reject/verify on right */
+  display: flex;
+  gap: 1rem;
+}
+
+.left-buttons, .right-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.print-btn {
+  background-color: #757575 !important;
+  color: white !important;
+  border: 1px solid #616161 !important;
+}
+
+.reject-btn {
+  background-color: #d32f2f !important;
+  color: white !important;
+  border: 1px solid #b71c1c !important;
+}
+
+.verify-btn {
+  background-color: #2e7d32 !important;
+  color: white !important;
+  border: 1px solid #1b5e20 !important;
+}
+
+button.mat-raised-button {
+  padding: 8px 24px;
+  border-radius: 4px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  transition: all 0.2s ease;
+}
+
+button.mat-raised-button:hover {
+  filter: brightness(110%);
+  transform: translateY(-1px);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .main-container {
+    padding: 1rem;
+    margin: 10px;
+  }
+
+  .detail-row {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .left-buttons, .right-buttons {
+    width: 100%;
+    justify-content: space-between;
+  }
+}

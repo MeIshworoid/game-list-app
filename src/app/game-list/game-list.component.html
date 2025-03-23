@@ -1,0 +1,96 @@
+<!-- Modified Game Details Template -->
+<div class="main-container">
+  <h1>Game List Detail</h1>
+
+  <!-- Game Sales Sheet Section -->
+  <mat-card class="game-card">
+    <mat-card-title>{{ gameDetails.gameSalesSheet }}</mat-card-title>
+    <mat-card-content class="card-content">
+      <div class="detail-row">
+        <span class="label">Game Release Date:</span>
+        <span class="value">{{ gameDetails.gameReleaseDate }}</span>
+      </div>
+      <div class="detail-row">
+        <span class="label">Game Name:</span>
+        <span class="value">{{ gameDetails.gameName }}</span>
+      </div>
+      <div class="detail-row">
+        <span class="label">Initial Release Version:</span>
+        <span class="value">{{ gameDetails.initialReleaseVersion }}</span>
+      </div>
+      <div class="detail-row">
+        <span class="label">Game Genre:</span>
+        <span class="value">{{ gameDetails.gameGenre }}</span>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Game List Table -->
+  <div class="table-section">
+    <h2>Games List</h2>
+    <table mat-table [dataSource]="gameDataSource" class="data-table">
+      <!-- Game Name Column -->
+      <ng-container matColumnDef="gameName">
+        <th mat-header-cell *matHeaderCellDef>Game Name</th>
+        <td mat-cell *matCellDef="let game">{{ game.gameName }}</td>
+      </ng-container>
+
+      <!-- Game Total Sales Column -->
+      <ng-container matColumnDef="gameTotalSales">
+        <th mat-header-cell *matHeaderCellDef>Total Sales</th>
+        <td mat-cell *matCellDef="let game">{{ game.gameTotalSales | number }}</td>
+      </ng-container>
+
+      <!-- Action Column -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Action</th>
+        <td mat-cell *matCellDef="let game">
+          <button mat-button class="view-btn">View</button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedGameColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedGameColumns;"></tr>
+    </table>
+  </div>
+
+  <!-- Game List Verification Table -->
+  <div class="table-section">
+    <h2>Games List Verification</h2>
+    <table mat-table [dataSource]="verificationDataSource" class="data-table">
+      <!-- Action Column -->
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef>Action</th>
+        <td mat-cell *matCellDef="let row">{{ row.action }}</td>
+      </ng-container>
+
+      <!-- Signed By Column -->
+      <ng-container matColumnDef="signedBy">
+        <th mat-header-cell *matHeaderCellDef>Signed By</th>
+        <td mat-cell *matCellDef="let row">{{ row.signedBy }}</td>
+      </ng-container>
+
+      <!-- Department/Designation Column -->
+      <ng-container matColumnDef="departmentDesignation">
+        <th mat-header-cell *matHeaderCellDef>Department/Designation</th>
+        <td mat-cell *matCellDef="let row">{{ row.departmentDesignation }}</td>
+      </ng-container>
+
+      <!-- Date Column -->
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef>Date</th>
+        <td mat-cell *matCellDef="let row">{{ row.date | date }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedVerificationColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedVerificationColumns;"></tr>
+    </table>
+  </div>
+
+  <div class="action-buttons">
+    <button mat-raised-button class="print-btn">Print</button>
+    <div class="right-buttons">
+      <button mat-raised-button class="reject-btn">Reject</button>
+      <button mat-raised-button class="verify-btn">Verify</button>
+    </div>
+  </div>
